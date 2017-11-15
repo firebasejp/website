@@ -9,11 +9,11 @@
     </pre>
     <h2>Event</h2>
     <ul>
-      <li>TBD</li>
+      <li v-for="v in events" :key="v.link"><a :href="v.link" target="_blank" rel="noopener noreferrer">{{v.title}}</a></li>
     </ul>
     <h2>Join</h2>
     <ul>
-      <li>TBD</li>
+      <li><a href="https://goo.gl/forms/HTpO1JucBx4pHbwe2" target="_blank" rel="noopener noreferrer">Slack</a></li>
     </ul>
   </div>
 </template>
@@ -23,7 +23,14 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Firebase Japan User Group へ ようこそ！'
+      msg: 'Firebase Japan User Group へ ようこそ！',
+      events: [
+        {
+          title: 'Firebase Japan User Group / kickoff meeting',
+          link: 'https://firebase-community.connpass.com/event/71102/',
+          description: 'Firebaseのユーザーグループ作ります。 その最初のミーティングです。',
+        },
+      ]
     }
   }
 }
