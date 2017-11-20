@@ -7,7 +7,9 @@
   "scripts": {
     "postinstall": "cd functions && npm install",
     "clean": "rimraf public",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "dev": "run-p dev:*",
+    "dev:app": "cross-env NODE_ENV=development webpack --progress --hide-modules --watch",
+    "dev:hosting": "firebase serve --only functions,hosting",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "deploy": "run-s clean build deploy:*",
     "deploy:firebase": "firebase deploy"
@@ -21,6 +23,12 @@
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
+    "eslint": "^4.11.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "file-loader": "^1.1.4",
     "firebase-tools": "^3.13.1",
     "html-webpack-plugin": "^2.30.1",
