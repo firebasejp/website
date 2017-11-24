@@ -13,7 +13,8 @@
     "deploy:firebase": "firebase deploy"
   },
   "dependencies": {
-    "vue": "^2.4.4"
+    "vue": "^2.4.4",
+    "vue-material": "^1.0.0-beta-5"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
