@@ -1,5 +1,42 @@
 <template>
   <div id="app">
+
+<div class="page-container">
+  <md-app md-waterfall md-mode="fixed">
+    <md-app-toolbar class="md-primary">
+      <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+        <md-icon>menu</md-icon>
+      </md-button>
+      <span class="md-title">FireJpUG</span>
+    </md-app-toolbar>
+
+    <md-app-drawer :md-active.sync="menuVisible">
+      <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
+
+      <md-list>
+        <md-list-item>
+          <md-icon>home</md-icon>
+          <span class="md-list-item-text">Home</span>
+        </md-list-item>
+
+        <md-list-item>
+          <md-icon>help</md-icon>
+          <span class="md-list-item-text">About</span>
+        </md-list-item>
+
+        <md-list-item>
+          <md-icon>event</md-icon>
+          <span class="md-list-item-text">Event</span>
+        </md-list-item>
+
+        <md-list-item>
+          <md-icon>group_add</md-icon>
+          <span class="md-list-item-text">Join</span>
+        </md-list-item>
+      </md-list>
+    </md-app-drawer>
+
+    <md-app-content>
     <h1>{{ msg }}</h1>
     <h2>About</h2>
     <pre>
@@ -15,6 +52,10 @@
     <ul>
       <li><a href="https://goo.gl/forms/HTpO1JucBx4pHbwe2" target="_blank" rel="noopener noreferrer">Slack</a></li>
     </ul>
+    </md-app-content>
+  </md-app>
+</div>
+
   </div>
 </template>
 
@@ -23,6 +64,7 @@ export default {
   name: 'app',
   data () {
     return {
+      menuVisible: false,
       msg: 'Firebase Japan User Group へ ようこそ！',
       events: [
         {
@@ -36,14 +78,21 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "~vue-material/dist/theme/engine"; // Import the theme engine
+
+@include md-register-theme("default", (
+  primary: md-get-palette-color(orange, A200), // The primary color of your application
+  accent: md-get-palette-color(red, A200) // The accent and secondary color
+));
+
+@import "~vue-material/dist/theme/all"; // Apply the theme
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 
 h1, h2 {
@@ -60,7 +109,7 @@ li {
   margin: 0 10px;
 }
 
-a {
-  color: #42b983;
+.md-app {
+  border: 1px solid rgba(#000, .12);
 }
 </style>
