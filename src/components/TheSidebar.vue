@@ -1,9 +1,5 @@
 <template>
   <div>
-    <md-app-drawer
-      md-permanent="full"
-      :md-active.sync="menuVisible"
-    >
       <md-toolbar 
         class="md-transparent" 
         md-elevation="0"
@@ -32,7 +28,6 @@
           <span class="md-list-item-text">Join</span>
         </md-list-item>
       </md-list>
-    </md-app-drawer>
 
   </div>
 </template>
@@ -44,8 +39,5 @@
 </script>
 
 <style scoped>
-.md-app-drawer {
-  width: 230px;
-  max-width: calc(100vw - 125px);
-}
+
 </style>

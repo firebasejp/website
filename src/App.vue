@@ -13,7 +13,12 @@
       <span class="md-title">FireJpUG</span>
     </md-app-toolbar>
 
-    <the-sidebar />
+    <md-app-drawer
+      md-permanent="full"
+      :md-active.sync="menuVisible"
+    >
+      <the-sidebar />
+    </md-app-drawer>
 
     <md-app-content>
     <h1>{{ msg }}</h1>
@@ -118,6 +123,11 @@ li {
 .md-app {
   max-height: 100vh;
   border: 1px solid rgba(#000, .12);
+}
+
+.md-app-drawer {
+  width: 230px;
+  max-width: calc(100vw - 125px);
 }
 
 .md-card {
