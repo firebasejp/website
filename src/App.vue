@@ -1,77 +1,60 @@
 <template>
   <div id="app">
 
-<div class="page-container">
-  <md-app md-mode="fixed">
-    <md-app-toolbar class="md-primary">
-      <md-button 
-        class="md-icon-button menu-button" 
-        @click="menuVisible = !menuVisible"
-      >
-        <md-icon>menu</md-icon>
-      </md-button>
-      <span class="md-title">FireJpUG</span>
-    </md-app-toolbar>
+    <div class="page-container">
+      <md-app md-mode="fixed">
+        <md-app-toolbar class="md-primary">
+          <the-topbar 
+            slot="md-app-toolbar"
+            @switchSidebarVisibleEmit='menuVisible = !menuVisible' 
+          >
+          </the-topbar>
+        </md-app-toolbar>
 
-    <md-app-drawer
-      md-permanent="full"
-      :md-active.sync="menuVisible"
-    >
-      <the-sidebar />
-    </md-app-drawer>
+        <md-app-drawer
+          md-permanent="full"
+          :md-active.sync="menuVisible"
+        >
+          <the-sidebar />
+        </md-app-drawer>
 
-    <md-app-content>
-    <h1>{{ msg }}</h1>
-    
-    <md-card>
-      <md-card-header>
-        <div class="md-title">About</div>
-      </md-card-header>
-      <md-card-content>
-        <p>
-          Firebase Japan User GroupはFirebase の User Groupです。<br/>
-          Firebase初心者もガチ勢も誰でも参加できます！<br/>
-          私たちはFirebaseを広く使われることを目標に活動しています。<br/>
-        </p>
-      </md-card-content>
-    </md-card>
+        <md-app-content>
+          <h1>{{ msg }}</h1>
+          
+          <md-card>
+            <card-about />
+          </md-card>
 
-    <md-card>
-      <md-card-header>
-        <div class="md-title">Event</div>
-      </md-card-header>
-      <md-card-content>
-        <ul>
-          <li v-for="v in events" :key="v.link"><a :href="v.link" target="_blank" rel="noopener noreferrer">{{v.title}}</a></li>
-        </ul>
-      </md-card-content>
-    </md-card>
+          <md-card>
+            <card-event />
+          </md-card>
 
-    <md-card>
-      <md-card-header>
-        <div class="md-title">Join</div>
-      </md-card-header>
-      <md-card-content>
-        <ul>
-          <li><a href="https://goo.gl/forms/HTpO1JucBx4pHbwe2" target="_blank" rel="noopener noreferrer">Slack</a></li>
-        </ul>
-      </md-card-content>
-    </md-card>
+          <md-card>
+            <card-join />
+          </md-card>
 
-    </md-app-content>
-  </md-app>
-</div>
+        </md-app-content>
+      </md-app>
+    </div>
 
   </div>
 </template>
 
 <script>
 import TheSidebar from './components/TheSidebar.vue'
+import TheTopbar from './components/TheTopbar.vue'
+import CardAbout from './components/CardAbout.vue'
+import CardEvent from './components/CardEvent.vue'
+import CardJoin from './components/CardJoin.vue'
 
 export default {
   name: 'app',
   components: {
-    TheSidebar
+    TheTopbar,
+    TheSidebar,
+    CardAbout,
+    CardEvent,
+    CardJoin
   },
   data () {
     return {
@@ -135,10 +118,6 @@ li {
 }
 
 @media (min-width: 600px) {
-  .menu-button {
-    display: none;
-  }
-
   .md-card{
     width: 320px;
     display: inline-block;
