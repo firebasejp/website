@@ -4,37 +4,16 @@
 <div class="page-container">
   <md-app md-mode="fixed">
     <md-app-toolbar class="md-primary">
-      <md-button class="md-icon-button menu-button" @click="menuVisible = !menuVisible">
+      <md-button 
+        class="md-icon-button menu-button" 
+        @click="menuVisible = !menuVisible"
+      >
         <md-icon>menu</md-icon>
       </md-button>
       <span class="md-title">FireJpUG</span>
     </md-app-toolbar>
 
-    <md-app-drawer md-permanent="full" :md-active.sync="menuVisible">
-      <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
-
-      <md-list>
-        <md-list-item>
-          <md-icon>home</md-icon>
-          <span class="md-list-item-text">Home</span>
-        </md-list-item>
-
-        <md-list-item>
-          <md-icon>help</md-icon>
-          <span class="md-list-item-text">About</span>
-        </md-list-item>
-
-        <md-list-item>
-          <md-icon>event</md-icon>
-          <span class="md-list-item-text">Event</span>
-        </md-list-item>
-
-        <md-list-item>
-          <md-icon>group_add</md-icon>
-          <span class="md-list-item-text">Join</span>
-        </md-list-item>
-      </md-list>
-    </md-app-drawer>
+    <the-sidebar />
 
     <md-app-content>
     <h1>{{ msg }}</h1>
@@ -82,8 +61,13 @@
 </template>
 
 <script>
+import TheSidebar from './components/TheSidebar.vue'
+
 export default {
   name: 'app',
+  components: {
+    TheSidebar
+  },
   data () {
     return {
       menuVisible: false,
@@ -134,12 +118,6 @@ li {
 .md-app {
   max-height: 100vh;
   border: 1px solid rgba(#000, .12);
-}
-
-
-.md-app-drawer {
-  width: 230px;
-  max-width: calc(100vw - 125px);
 }
 
 .md-card {
