@@ -27,6 +27,11 @@
           <md-icon>group_add</md-icon>
           <span class="md-list-item-text">Join</span>
         </md-list-item>
+
+        <md-list-item>
+          <md-icon>chat</md-icon>
+          <span class="md-list-item-text">Twitter</span>
+        </md-list-item>
       </md-list>
 
   </div>
