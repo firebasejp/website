@@ -2,9 +2,13 @@
   <div>
       <md-toolbar 
         class="md-transparent" 
-        md-elevation="0"
+        md-elevation="2"
       >
-        Navigation
+        <img 
+          class="fjug-logo"
+          src="../img/FJUG.png" 
+          width="180"
+        >
       </md-toolbar>
 
       <md-list>
@@ -53,4 +57,7 @@
 
 @import "~vue-material/dist/theme/all"; // Apply the theme
 
+.fjug-logo {
+  margin: 30px auto;
+}
 </style>
