@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img src="./assets/logo.png" alt="Firebase Japan User Group">
     <h1>{{ msg }}</h1>
     <h2>About</h2>
     <pre>
