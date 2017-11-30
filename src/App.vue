@@ -33,6 +33,10 @@
             <card-join />
           </md-card>
 
+          <md-card>
+            <card-twitter />
+          </md-card>
+
         </md-app-content>
       </md-app>
     </div>
@@ -46,6 +50,7 @@ import TheTopbar from './components/TheTopbar.vue'
 import CardAbout from './components/CardAbout.vue'
 import CardEvent from './components/CardEvent.vue'
 import CardJoin from './components/CardJoin.vue'
+import CardTwitter from './components/CardTwitter.vue'
 
 export default {
   name: 'app',
@@ -54,7 +59,8 @@ export default {
     TheSidebar,
     CardAbout,
     CardEvent,
-    CardJoin
+    CardJoin,
+    CardTwitter
   },
   data () {
     return {
