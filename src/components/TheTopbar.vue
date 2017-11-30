@@ -6,7 +6,7 @@
     >
       <md-icon>menu</md-icon>
     </md-button>
-    <span class="md-title">FireJpUG</span>
+    <span class="md-title">FJUG</span>
 
   </div>
 </template>
@@ -39,6 +39,7 @@
 .md-title{
   display: table-cell;
   vertical-align: middle;
+  font-weight: bold;
 }
 
 @media (min-width: 600px) {
