@@ -2,9 +2,25 @@
   <md-card>
     <template-card>
 
-      <div slot="title">Events</div>
+      <div slot="title">
+        Events
+      </div>
+      <div slot="summary">
+        開催イベント
+      </div>
       <ul slot="content">
-        <li v-for="v in events" :key="v.link"><a :href="v.link" target="_blank" rel="noopener noreferrer">{{v.title}}</a></li>
+        <li 
+          v-for="v in events" 
+          :key="v.link"
+        >
+          <a 
+            :href="v.link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            {{v.title}}
+          </a>
+        </li>
       </ul>
 
     </template-card>

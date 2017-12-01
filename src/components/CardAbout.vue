@@ -2,7 +2,12 @@
    <md-card>
     <template-card>
 
-      <div slot="title">About</div>
+      <div slot="title">
+        About
+      </div>
+      <div slot="summary">
+        このグループについて
+      </div>
       <p slot="content">
         Firebase Japan User GroupはFirebase の User Groupです。<br/>
         Firebase初心者もガチ勢も誰でも参加できます！<br/>

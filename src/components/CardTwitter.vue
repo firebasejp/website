@@ -5,6 +5,9 @@
       <div slot="title">
         Twitter
       </div>
+      <div slot="summary">
+        関連ツイート
+      </div>
       <a 
         slot="content"
         class="twitter-timeline"  

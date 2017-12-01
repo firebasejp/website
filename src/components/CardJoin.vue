@@ -2,9 +2,22 @@
    <md-card>
     <template-card>
 
-      <div slot="title">Join</div>
+      <div slot="title">
+        Join
+      </div>
+      <div slot="summary">
+        参加するには
+      </div>
       <ul slot="content">
-        <li><a href="https://goo.gl/forms/HTpO1JucBx4pHbwe2" target="_blank" rel="noopener noreferrer">Slack</a></li>
+        <li>
+          <a 
+            href="https://goo.gl/forms/HTpO1JucBx4pHbwe2" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            Slack
+          </a>
+        </li>
       </ul>
 
     </template-card>
