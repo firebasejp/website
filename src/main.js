@@ -11,6 +11,7 @@ Vue.use(VueRouter)
 Vue.use(VueMaterial)
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

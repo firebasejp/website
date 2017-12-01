@@ -1,7 +1,7 @@
 <template>
   <div class="top-bar">
-    <md-button 
-      class="md-icon-button menu-button" 
+    <md-button
+      class="md-icon-button menu-button"
       @click="switchSidebarVisible"
     >
       <md-icon>menu</md-icon>
@@ -12,14 +12,13 @@
 </template>
 
 <script>
-  export default {
-    methods:{
-      switchSidebarVisible () {
-        this.$emit('switchSidebarVisibleEmit')
-
-      }
+export default {
+  methods: {
+    switchSidebarVisible () {
+      this.$emit('switchSidebarVisibleEmit')
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

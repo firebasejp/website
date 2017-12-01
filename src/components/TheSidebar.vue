@@ -1,12 +1,12 @@
 <template>
   <div>
-      <md-toolbar 
-        class="md-transparent" 
+      <md-toolbar
+        class="md-transparent"
         md-elevation="2"
       >
-        <img 
+        <img
           class="fjug-logo"
-          src="../img/FJUG.png" 
+          src="../img/FJUG.png"
           width="180"
         >
       </md-toolbar>
@@ -14,8 +14,8 @@
       <md-list>
         <md-list-item>
           <md-icon>home</md-icon>
-          <router-link 
-            to="home" 
+          <router-link
+            to="/"
             class="md-list-item-text"
           >
             Home
@@ -24,8 +24,8 @@
 
         <md-list-item>
           <md-icon>help</md-icon>
-          <router-link 
-            to="about" 
+          <router-link
+            to="about"
             class="md-list-item-text"
           >
             About
@@ -34,8 +34,8 @@
 
         <md-list-item>
           <md-icon>event</md-icon>
-          <router-link 
-            to="events" 
+          <router-link
+            to="events"
             class="md-list-item-text"
           >
             Events
@@ -44,8 +44,8 @@
 
         <md-list-item>
           <md-icon>group_add</md-icon>
-          <router-link 
-            to="join" 
+          <router-link
+            to="join"
             class="md-list-item-text"
           >
             Join
@@ -54,8 +54,8 @@
 
         <md-list-item>
           <md-icon>chat</md-icon>
-          <router-link 
-            to="twitter" 
+          <router-link
+            to="twitter"
             class="md-list-item-text"
           >
             Twitter
@@ -67,9 +67,9 @@
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {
+
+}
 </script>
 
 <style lang="scss" scoped>

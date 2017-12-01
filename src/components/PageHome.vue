@@ -10,19 +10,19 @@
 </template>
 
 <script>
-  import CardAbout from './CardAbout.vue'
-  import CardEvents from './CardEvents.vue'
-  import CardJoin from './CardJoin.vue'
-  import CardTwitter from './CardTwitter.vue'
+import CardAbout from './CardAbout.vue'
+import CardEvents from './CardEvents.vue'
+import CardJoin from './CardJoin.vue'
+import CardTwitter from './CardTwitter.vue'
 
-  export default {
-    components: {
-      CardAbout,
-      CardEvents,
-      CardJoin,
-      CardTwitter
-    },
+export default {
+  components: {
+    CardAbout,
+    CardEvents,
+    CardJoin,
+    CardTwitter
   }
+}
 </script>
 
 <style scoped>

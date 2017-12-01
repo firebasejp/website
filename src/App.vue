@@ -4,9 +4,9 @@
     <div class="page-container">
       <md-app md-mode="fixed">
         <md-app-toolbar class="md-primary">
-          <the-topbar 
+          <the-topbar
             slot="md-app-toolbar"
-            @switchSidebarVisibleEmit='menuVisible = !menuVisible' 
+            @switchSidebarVisibleEmit='menuVisible = !menuVisible'
           >
           </the-topbar>
         </md-app-toolbar>
@@ -42,7 +42,7 @@ export default {
   data () {
     return {
       menuVisible: false,
-      msg: 'Firebase Japan User Group へ ようこそ！',
+      msg: 'Firebase Japan User Group へ ようこそ！'
     }
   }
 }
