@@ -26,7 +26,7 @@
           </md-card>
 
           <md-card>
-            <card-event />
+            <card-events />
           </md-card>
 
           <md-card>
@@ -48,7 +48,7 @@
 import TheSidebar from './components/TheSidebar.vue'
 import TheTopbar from './components/TheTopbar.vue'
 import CardAbout from './components/CardAbout.vue'
-import CardEvent from './components/CardEvent.vue'
+import CardEvents from './components/CardEvents.vue'
 import CardJoin from './components/CardJoin.vue'
 import CardTwitter from './components/CardTwitter.vue'
 
@@ -58,7 +58,7 @@ export default {
     TheTopbar,
     TheSidebar,
     CardAbout,
-    CardEvent,
+    CardEvents,
     CardJoin,
     CardTwitter
   },

@@ -2,7 +2,7 @@
   <div>
 
     <md-card-header>
-      <div class="md-title">Event</div>
+      <div class="md-title">Events</div>
     </md-card-header>
     <md-card-content>
       <ul>

@@ -24,7 +24,7 @@
 
         <md-list-item>
           <md-icon>event</md-icon>
-          <span class="md-list-item-text">Event</span>
+          <span class="md-list-item-text">Events</span>
         </md-list-item>
 
         <md-list-item>
