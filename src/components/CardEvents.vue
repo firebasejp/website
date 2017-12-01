@@ -54,16 +54,14 @@
 </script>
 
 <style lang="scss" scoped>
-.md-card {
-  margin: 4px;
-}
+@import "~vue-material/dist/theme/engine"; // Import the theme engine
 
-@media (min-width: 600px) {
-  .md-card{
-    width: 320px;
-    display: block;
-    float: left;
-  }
-}
+@include md-register-theme("default", (
+  primary: md-get-palette-color(orange, A200), // The primary color of your application
+  accent: md-get-palette-color(red, A200) // The accent and secondary color
+));
+
+@import "~vue-material/dist/theme/all"; // Apply the theme
+  
 
 </style>

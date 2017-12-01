@@ -20,11 +20,7 @@
 
         <md-app-content>
           <h1>{{ msg }}</h1>
-          
-          <card-about />
-          <card-events />
-          <card-join />
-          <card-twitter />
+          <router-view />
 
         </md-app-content>
       </md-app>
@@ -36,20 +32,12 @@
 <script>
 import TheSidebar from './components/TheSidebar.vue'
 import TheTopbar from './components/TheTopbar.vue'
-import CardAbout from './components/CardAbout.vue'
-import CardEvents from './components/CardEvents.vue'
-import CardJoin from './components/CardJoin.vue'
-import CardTwitter from './components/CardTwitter.vue'
 
 export default {
   name: 'app',
   components: {
     TheTopbar,
-    TheSidebar,
-    CardAbout,
-    CardEvents,
-    CardJoin,
-    CardTwitter
+    TheSidebar
   },
   data () {
     return {
@@ -105,11 +93,4 @@ li {
   margin: 4px;
 }
 
-@media (min-width: 600px) {
-  .md-card{
-    width: 320px;
-    display: block;
-    float: left;
-  }
-}
 </style>

@@ -14,27 +14,52 @@
       <md-list>
         <md-list-item>
           <md-icon>home</md-icon>
-          <span class="md-list-item-text">Home</span>
+          <router-link 
+            to="home" 
+            class="md-list-item-text"
+          >
+            Home
+          </router-link>
         </md-list-item>
 
         <md-list-item>
           <md-icon>help</md-icon>
-          <span class="md-list-item-text">About</span>
+          <router-link 
+            to="about" 
+            class="md-list-item-text"
+          >
+            About
+          </router-link>
         </md-list-item>
 
         <md-list-item>
           <md-icon>event</md-icon>
-          <span class="md-list-item-text">Events</span>
+          <router-link 
+            to="events" 
+            class="md-list-item-text"
+          >
+            Events
+          </router-link>
         </md-list-item>
 
         <md-list-item>
           <md-icon>group_add</md-icon>
-          <span class="md-list-item-text">Join</span>
+          <router-link 
+            to="join" 
+            class="md-list-item-text"
+          >
+            Join
+          </router-link>
         </md-list-item>
 
         <md-list-item>
           <md-icon>chat</md-icon>
-          <span class="md-list-item-text">Twitter</span>
+          <router-link 
+            to="twitter" 
+            class="md-list-item-text"
+          >
+            Twitter
+          </router-link>
         </md-list-item>
       </md-list>
 
