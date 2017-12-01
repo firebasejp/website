@@ -21,21 +21,10 @@
         <md-app-content>
           <h1>{{ msg }}</h1>
           
-          <md-card>
-            <card-about />
-          </md-card>
-
-          <md-card>
-            <card-events />
-          </md-card>
-
-          <md-card>
-            <card-join />
-          </md-card>
-
-          <md-card>
-            <card-twitter />
-          </md-card>
+          <card-about />
+          <card-events />
+          <card-join />
+          <card-twitter />
 
         </md-app-content>
       </md-app>
@@ -66,13 +55,6 @@ export default {
     return {
       menuVisible: false,
       msg: 'Firebase Japan User Group へ ようこそ！',
-      events: [
-        {
-          title: 'Firebase Japan User Group / kickoff meeting',
-          link: 'https://firebase-community.connpass.com/event/71102/',
-          description: 'Firebaseのユーザーグループ作ります。 その最初のミーティングです。',
-        },
-      ]
     }
   }
 }
@@ -126,8 +108,8 @@ li {
 @media (min-width: 600px) {
   .md-card{
     width: 320px;
-    display: inline-block;
-    vertical-align: top;
+    display: block;
+    float: left;
   }
 }
 </style>
