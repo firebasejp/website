@@ -8,20 +8,40 @@
       <div slot="summary">
         開催イベント
       </div>
-      <ul slot="content">
-        <li
-          v-for="v in events"
-          :key="v.link"
+      <div slot="content">
+        <md-card
+            v-for="v in events"
+            :key="v.link"
+            md-with-hover
         >
-          <a
-            :href="v.link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {{v.title}}
-          </a>
-        </li>
-      </ul>
+          <md-ripple>
+            <a
+                :href="v.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+            <md-card-header>
+              <div class="md-title">{{v.title}}</div>
+            </md-card-header>
+            </a>
+
+            <md-card-actions>
+              <md-button
+                :href="v.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="md-raised md-primary"
+              >
+                参加する
+              </md-button>
+            </md-card-actions>
+
+            <md-card-content>
+              {{v.description}}
+            </md-card-content>
+          </md-ripple>
+        </md-card>
+      </div>
 
     </template-card>
   </md-card>
@@ -69,4 +89,10 @@ export default {
 
 @import "~vue-material/dist/theme/all"; // Apply the theme
 
+.md-card {
+  margin: 4px;
+}
+.md-list-item-link{
+  color: #ff5252 !important;
+}
 </style>

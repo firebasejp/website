@@ -1,10 +1,10 @@
 <template>
   <div>
 
-    <card-about />
-    <card-events />
+    <card-events expand-default="on" />
+    <card-twitter expand-default="on" />
     <card-join />
-    <card-twitter />
+    <card-about />
 
   </div>
 </template>
@@ -33,8 +33,8 @@ export default {
 @media (min-width: 600px) {
   .md-card{
     width: 320px;
-    display: inline-block;
-    vertical-align: top;
+    display: block;
+    float: left;
   }
 }
 </style>

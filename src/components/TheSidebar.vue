@@ -12,54 +12,29 @@
       </md-toolbar>
 
       <md-list>
-        <md-list-item>
+        <md-list-item to="/">
           <md-icon>home</md-icon>
-          <router-link
-            to="/"
-            class="md-list-item-text"
-          >
-            Home
-          </router-link>
+          <span class="md-list-item-text">Home</span>
         </md-list-item>
 
-        <md-list-item>
+        <md-list-item to="about">
           <md-icon>help</md-icon>
-          <router-link
-            to="about"
-            class="md-list-item-text"
-          >
-            About
-          </router-link>
+          <span class="md-list-item-text">About</span>
         </md-list-item>
 
-        <md-list-item>
+        <md-list-item to="events">
           <md-icon>event</md-icon>
-          <router-link
-            to="events"
-            class="md-list-item-text"
-          >
-            Events
-          </router-link>
+          <span class="md-list-item-text">Events</span>
         </md-list-item>
 
-        <md-list-item>
+        <md-list-item to="join">
           <md-icon>group_add</md-icon>
-          <router-link
-            to="join"
-            class="md-list-item-text"
-          >
-            Join
-          </router-link>
+          <span class="md-list-item-text">Join</span>
         </md-list-item>
 
-        <md-list-item>
+        <md-list-item to="twitter">
           <md-icon>chat</md-icon>
-          <router-link
-            to="twitter"
-            class="md-list-item-text"
-          >
-            Twitter
-          </router-link>
+          <span class="md-list-item-text">Twitter</span>
         </md-list-item>
       </md-list>
 
@@ -84,5 +59,9 @@ export default {
 
 .fjug-logo {
   margin: 30px auto;
+}
+
+.md-list-item-text{
+  color: #ff5252 !important;
 }
 </style>
