@@ -5,9 +5,10 @@
         md-elevation="2"
       >
         <img
-          class="fjug-logo"
-          src="../img/FJUG.png"
+          src="../assets/logo.png"
+          alt="Firebase Japan User Group"
           width="180"
+          class="fjug-logo"
         >
       </md-toolbar>
 
