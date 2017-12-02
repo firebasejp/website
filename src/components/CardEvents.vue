@@ -1,5 +1,5 @@
 <template>
-  <md-card>
+  <md-card ref="card">
     <template-card>
 
       <div slot="title">
@@ -33,6 +33,12 @@ import TemplateCard from './TemplateCard.vue'
 export default {
   components: {
     TemplateCard
+  },
+  props: ['expandDefault'],
+  mounted: function () {
+    if (this.expandDefault === 'on') {
+      this.$refs.card.$data.MdCard.expand = true
+    }
   },
   data () {
     return {
