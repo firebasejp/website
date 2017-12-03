@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -54,6 +55,11 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
+    new FaviconsWebpackPlugin({
+      logo: path.join(__dirname, 'src/assets/icon.png'),
+      inject: true,
+      prefix: '/'
+    }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),

@@ -21,6 +21,7 @@
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
+    "favicons-webpack-plugin": "0.0.7",
     "file-loader": "^1.1.4",
     "firebase-tools": "^3.13.1",
     "html-webpack-plugin": "^2.30.1",
