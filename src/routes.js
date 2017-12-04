@@ -1,32 +1,32 @@
-import CardAbout from './components/CardAbout.vue'
-import CardEvents from './components/CardEvents.vue'
-import CardJoin from './components/CardJoin.vue'
-import CardTwitter from './components/CardTwitter.vue'
-import PageHome from './components/PageHome.vue'
+import AboutPage from './components/AboutPage.vue'
+import EventsPage from './components/EventsPage.vue'
+import JoinPage from './components/JoinPage.vue'
+import TwitterPage from './components/TwitterPage.vue'
+import HomePage from './components/HomePage.vue'
 
 export default [
   {
     path: '/about',
     name: 'about',
-    component: CardAbout
+    component: AboutPage
   },
   {
     path: '/events',
     name: 'events',
-    component: CardEvents
+    component: EventsPage
   },
   {
     path: '/join',
     name: 'join',
-    component: CardJoin
+    component: JoinPage
   },
   {
     path: '/twitter',
     name: 'twitter',
-    component: CardTwitter
+    component: TwitterPage
   },
   {
     path: '*',
-    component: PageHome
+    component: HomePage
   }
 ]
