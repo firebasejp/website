@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <md-card ref="card">
 
     <md-card-header>
       <div class="md-title">
@@ -31,13 +31,19 @@
         </md-card-expand-content>
       </md-card-expand>
 
-  </div>
+  </md-card>
 </template>
 
 <script>
 export default {
+  props: ['expand'],
   data () {
     return {
+    }
+  },
+  mounted: function () {
+    if (this.expand === '') {
+      this.$refs.card.$data.MdCard.expand = true
     }
   }
 
@@ -54,4 +60,7 @@ export default {
 
 @import "~vue-material/dist/theme/all"; // Apply the theme
 
+.md-card {
+  margin: 4px;
+}
 </style>

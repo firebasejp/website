@@ -1,50 +1,48 @@
 <template>
-  <md-card ref="card">
-    <template-card>
+  <template-card :expand="expand">
 
-      <div slot="title">
-        Events
-      </div>
-      <div slot="summary">
-        開催イベント
-      </div>
-      <div slot="content">
-        <md-card
-            v-for="v in events"
-            :key="v.link"
-            md-with-hover
-        >
-          <md-ripple>
-            <a
-                :href="v.link"
-                target="_blank"
-                rel="noopener noreferrer"
-                >
-            <md-card-header>
-              <div class="md-title">{{v.title}}</div>
-            </md-card-header>
-            </a>
-
-            <md-card-actions>
-              <md-button
-                :href="v.link"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="md-raised md-primary"
+    <div slot="title">
+      Events
+    </div>
+    <div slot="summary">
+      開催イベント
+    </div>
+    <div slot="content">
+      <md-card
+          v-for="v in events"
+          :key="v.link"
+          md-with-hover
+      >
+        <md-ripple>
+          <a
+              :href="v.link"
+              target="_blank"
+              rel="noopener noreferrer"
               >
-                参加する
-              </md-button>
-            </md-card-actions>
+          <md-card-header>
+            <div class="md-title">{{v.title}}</div>
+          </md-card-header>
+          </a>
 
-            <md-card-content>
-              {{v.description}}
-            </md-card-content>
-          </md-ripple>
-        </md-card>
-      </div>
+          <md-card-actions>
+            <md-button
+              :href="v.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="md-raised md-primary"
+            >
+              参加する
+            </md-button>
+          </md-card-actions>
 
-    </template-card>
-  </md-card>
+          <md-card-content>
+            {{v.description}}
+          </md-card-content>
+        </md-ripple>
+      </md-card>
+    </div>
+
+  </template-card>
 </template>
 
 <script>
@@ -54,12 +52,7 @@ export default {
   components: {
     TemplateCard
   },
-  props: ['expandDefault'],
-  mounted: function () {
-    if (this.expandDefault === 'on') {
-      this.$refs.card.$data.MdCard.expand = true
-    }
-  },
+  props: ['expand'],
   data () {
     return {
       events: [
