@@ -1,33 +1,31 @@
 <template>
-  <md-card ref="card">
-    <template-card>
+  <template-card :expand-default="expandDefault">
 
-      <div slot="title">
-        Join
-      </div>
-      <div slot="summary">
-        参加するには
-      </div>
-      <md-list slot="content">
-        <md-list-item
-          href="https://goo.gl/forms/HTpO1JucBx4pHbwe2"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Slack
-        </md-list-item>
-        <md-list-item
-          href="https://firebase-community.connpass.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="md-list-item-text"
-        >
-          Connpass 
-        </md-list-item>
-      </md-list>
+    <div slot="title">
+      Join
+    </div>
+    <div slot="summary">
+      参加するには
+    </div>
+    <md-list slot="content">
+      <md-list-item
+        href="https://goo.gl/forms/HTpO1JucBx4pHbwe2"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Slack
+      </md-list-item>
+      <md-list-item
+        href="https://firebase-community.connpass.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="md-list-item-text"
+      >
+        Connpass 
+      </md-list-item>
+    </md-list>
 
-    </template-card>
-  </md-card>
+  </template-card>
 </template>
 
 <script>
@@ -37,12 +35,7 @@ export default {
   components: {
     TemplateCard
   },
-  props: ['expandDefault'],
-  mounted: function () {
-    if (this.expandDefault === 'on') {
-      this.$refs.card.$data.MdCard.expand = true
-    }
-  }
+  props: ['expandDefault']
 
 }
 </script>

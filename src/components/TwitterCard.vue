@@ -1,24 +1,22 @@
 <template>
-  <md-card ref="card">
-    <template-card>
+  <template-card :expand-default="expandDefault">
 
-      <div slot="title">
-        Twitter
-      </div>
-      <div slot="summary">
-        関連ツイート
-      </div>
-      <a
-        slot="content"
-        class="twitter-timeline"
-        href="https://twitter.com/search?q=Firebasejp%20OR%20FireJpUG%20OR%20FJUG"
-        data-widget-id="936240584850731008"
-      >
-        Firebasejp OR FireJpUG OR FJUGに関するツイート
-      </a>
+    <div slot="title">
+      Twitter
+    </div>
+    <div slot="summary">
+      関連ツイート
+    </div>
+    <a
+      slot="content"
+      class="twitter-timeline"
+      href="https://twitter.com/search?q=Firebasejp%20OR%20FireJpUG%20OR%20FJUG"
+      data-widget-id="936240584850731008"
+    >
+      Firebasejp OR FireJpUG OR FJUGに関するツイート
+    </a>
 
-    </template-card>
-  </md-card>
+  </template-card>
 </template>
 
 <script>
@@ -29,12 +27,7 @@ export default {
   components: {
     TemplateCard
   },
-  props: ['expandDefault'],
-  mounted: function () {
-    if (this.expandDefault === 'on') {
-      this.$refs.card.$data.MdCard.expand = true
-    }
-  }
+  props: ['expandDefault']
 
 }
 </script>

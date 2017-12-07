@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <md-card ref="card">
 
     <md-card-header>
       <div class="md-title">
@@ -31,13 +31,19 @@
         </md-card-expand-content>
       </md-card-expand>
 
-  </div>
+  </md-card>
 </template>
 
 <script>
 export default {
+  props: ['expandDefault'],
   data () {
     return {
+    }
+  },
+  mounted: function () {
+    if (this.expandDefault === 'on') {
+      this.$refs.card.$data.MdCard.expand = true
     }
   }
 
