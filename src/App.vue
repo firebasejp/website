@@ -1,54 +1,72 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" alt="Firebase Japan User Group">
-    <h1>{{ msg }}</h1>
-    <h2>About</h2>
-    <pre>
-      Firebase Japan User GroupはFirebase の User Groupです。
-      Firebase初心者もガチ勢も誰でも参加できます！
-      私たちはFirebaseを広く使われることを目標に活動しています。
-    </pre>
-    <h2>Event</h2>
-    <ul>
-      <li v-for="v in events" :key="v.link"><a :href="v.link" target="_blank" rel="noopener noreferrer">{{v.title}}</a></li>
-    </ul>
-    <h2>Join</h2>
-    <ul>
-      <li><a href="https://goo.gl/forms/HTpO1JucBx4pHbwe2" target="_blank" rel="noopener noreferrer">Slack</a></li>
-    </ul>
+
+    <div class="page-container">
+      <md-app md-mode="fixed">
+        <md-app-toolbar class="md-primary">
+          <the-topbar
+            slot="md-app-toolbar"
+            @switchSidebarVisibleEmit='menuVisible = !menuVisible'
+          >
+          </the-topbar>
+        </md-app-toolbar>
+
+        <md-app-drawer
+          md-permanent="full"
+          :md-active.sync="menuVisible"
+        >
+          <the-sidebar />
+        </md-app-drawer>
+
+        <md-app-content>
+          <h1>{{ msg }}</h1>
+          <router-view />
+
+        </md-app-content>
+      </md-app>
+    </div>
+
   </div>
 </template>
 
 <script>
+import TheSidebar from './components/TheSidebar.vue'
+import TheTopbar from './components/TheTopbar.vue'
+
 export default {
   name: 'app',
+  components: {
+    TheTopbar,
+    TheSidebar
+  },
   data () {
     return {
-      msg: 'Firebase Japan User Group へ ようこそ！',
-      events: [
-        {
-          title: 'Firebase Japan User Group / kickoff meeting',
-          link: 'https://firebase-community.connpass.com/event/71102/',
-          description: 'Firebaseのユーザーグループ作ります。 その最初のミーティングです。',
-        },
-      ]
+      menuVisible: false,
+      msg: 'Firebase Japan User Group へ ようこそ！'
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "~vue-material/dist/theme/engine"; // Import the theme engine
+
+@include md-register-theme("default", (
+  primary: md-get-palette-color(orange, A200), // The primary color of your application
+  accent: md-get-palette-color(red, A200) // The accent and secondary color
+));
+
+@import "~vue-material/dist/theme/all"; // Apply the theme
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 
 h1, h2 {
   font-weight: normal;
+  line-height: 1em;
 }
 
 ul {
@@ -61,7 +79,18 @@ li {
   margin: 0 10px;
 }
 
-a {
-  color: #42b983;
+.md-app {
+  max-height: 100vh;
+  border: 1px solid rgba(#000, .12);
 }
+
+.md-app-drawer {
+  width: 230px;
+  max-width: calc(100vw - 125px);
+}
+
+.md-card {
+  margin: 4px;
+}
+
 </style>
