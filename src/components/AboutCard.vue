@@ -1,5 +1,5 @@
 <template>
-  <template-card :expand-default="expandDefault">
+  <template-card :expand="expand">
 
     <div slot="title">
       About
@@ -23,7 +23,7 @@ export default {
   components: {
     TemplateCard
   },
-  props: ['expandDefault']
+  props: ['expand']
 
 }
 </script>

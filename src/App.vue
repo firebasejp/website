@@ -20,7 +20,7 @@
 
         <md-app-content>
           <h1>{{ msg }}</h1>
-          <router-view expand-default="on" />
+          <router-view />
 
         </md-app-content>
       </md-app>

@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <twitter-card expand-default="on" />
+    <twitter-card expand />
 
   </div>
 </template>

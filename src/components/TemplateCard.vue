@@ -36,13 +36,13 @@
 
 <script>
 export default {
-  props: ['expandDefault'],
+  props: ['expand'],
   data () {
     return {
     }
   },
   mounted: function () {
-    if (this.expandDefault === 'on') {
+    if (this.expand === '') {
       this.$refs.card.$data.MdCard.expand = true
     }
   }

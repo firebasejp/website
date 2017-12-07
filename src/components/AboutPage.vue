@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <about-card expand-default="on" />
+    <about-card expand />
 
   </div>
 </template>

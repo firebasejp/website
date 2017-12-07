@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <events-card expand-default="on" />
+    <events-card expand />
 
   </div>
 </template>

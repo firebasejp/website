@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <events-card expand-default="on" />
-    <twitter-card expand-default="on" />
+    <events-card expand />
+    <twitter-card expand />
     <join-card />
     <about-card />
 

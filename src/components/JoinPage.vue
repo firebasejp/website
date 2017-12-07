@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <join-card expand-default="on" />
+    <join-card expand />
 
   </div>
 </template>
