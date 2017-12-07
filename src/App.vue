@@ -30,41 +30,48 @@
 </template>
 
 <script>
-import TheSidebar from './components/TheSidebar.vue'
-import TheTopbar from './components/TheTopbar.vue'
+import TheSidebar from "./components/TheSidebar.vue";
+import TheTopbar from "./components/TheTopbar.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     TheTopbar,
     TheSidebar
   },
-  data () {
+  data() {
     return {
       menuVisible: false,
-      msg: 'Firebase Japan User Group へ ようこそ！'
-    }
+      msg: "Firebase Japan User Group へ ようこそ！"
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 @import "~vue-material/dist/theme/engine"; // Import the theme engine
 
 @include md-register-theme("default", (
-  primary: md-get-palette-color(orange, A200), // The primary color of your application
-  accent: md-get-palette-color(red, A200) // The accent and secondary color
+  primary: md-get-palette-color(orange, A200), 
+  accent: md-get-palette-color(red, A200) 
 ));
 
 @import "~vue-material/dist/theme/all"; // Apply the theme
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2 {
+#app,
+.page-container,
+main {
+  height: 100%;
+}
+
+h1,
+h2 {
   font-weight: normal;
   line-height: 1em;
 }
@@ -81,7 +88,8 @@ li {
 
 .md-app {
   max-height: 100vh;
-  border: 1px solid rgba(#000, .12);
+  border: 1px solid rgba(#000, 0.12);
+  height: 100%;
 }
 
 .md-app-drawer {
@@ -92,5 +100,4 @@ li {
 .md-card {
   margin: 4px;
 }
-
 </style>
