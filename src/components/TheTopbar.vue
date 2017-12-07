@@ -6,7 +6,7 @@
     >
       <md-icon>menu</md-icon>
     </md-button>
-    <span class="md-title">FJUG</span>
+    <h1 class="md-title">Firebase Japan User Group</h1>
 
   </div>
 </template>
