@@ -42,8 +42,14 @@ export default {
   data() {
     return {
       menuVisible: false,
-      msg: "Firebase Japan User Group へ ようこそ！"
-    };
+      msg: 'Firebase Japan User Group へ ようこそ！'
+    }
+  },
+  mounted () {
+    this.$router.beforeEach((to, from, next) => {
+      this.menuVisible = false
+      next()
+    })
   }
 };
 </script>
