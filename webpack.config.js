@@ -37,6 +37,11 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        include: /node_modules/
       }
     ]
   },

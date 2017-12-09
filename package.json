@@ -13,7 +13,9 @@
     "deploy:firebase": "firebase deploy"
   },
   "dependencies": {
-    "vue": "^2.4.4"
+    "vue": "^2.4.4",
+    "vue-material": "^1.0.0-beta-5",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -22,6 +24,13 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "favicons-webpack-plugin": "0.0.7",
+    "eslint": "^4.12.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-vue": "^4.0.0-beta.0",
     "file-loader": "^1.1.4",
     "firebase-tools": "^3.13.1",
     "html-webpack-plugin": "^2.30.1",
