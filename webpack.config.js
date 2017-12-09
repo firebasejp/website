@@ -3,6 +3,8 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
+var isProd = process.env.NODE_ENV === 'production'
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -62,16 +64,31 @@ module.exports = {
   plugins: [
     new FaviconsWebpackPlugin({
       logo: path.join(__dirname, 'src/assets/icon.png'),
+      prefix: './',
       inject: true,
-      prefix: '/'
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    }),
-  ],
+      template: 'src/index.html',
+      minify: isProd ? {
+        collapseWhitespace: true
+      } : false
+    })
+  ]
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (isProd) {
   module.exports.devtool = 'none'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
