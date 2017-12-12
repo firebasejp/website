@@ -19,7 +19,12 @@ const router = new VueRouter({
 
 Vue.use(VueAnalytics, {
   id: 'UA-52147387-7',
-  router
+  router,
+  debug: process.env.NODE_ENV === 'production' ? false : {
+    enabled: true,
+    trace: false,
+    sendHitTask: true
+  }
 })
 
 const vm = new Vue({
