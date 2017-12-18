@@ -42,14 +42,14 @@ export default {
   data() {
     return {
       menuVisible: false,
-      msg: 'Firebase Japan User Group へ ようこそ！'
-    }
+      msg: "Firebase Japan User Group へ ようこそ！"
+    };
   },
-  mounted () {
+  mounted() {
     this.$router.beforeEach((to, from, next) => {
-      this.menuVisible = false
-      next()
-    })
+      this.menuVisible = false;
+      next();
+    });
   }
 };
 </script>
@@ -63,6 +63,15 @@ export default {
 ));
 
 @import "~vue-material/dist/theme/all"; // Apply the theme
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

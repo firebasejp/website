@@ -11,7 +11,8 @@
     "dev:webpack": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "deploy": "run-s clean build deploy:*",
-    "deploy:firebase": "firebase deploy"
+    "deploy:firebase": "firebase deploy",
+    "serve": "firebase serve --only functions,hosting"
   },
   "dependencies": {
     "vue": "^2.4.4",
@@ -32,6 +33,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "^4.0.0-beta.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "favicons-webpack-plugin": "0.0.7",
     "file-loader": "^1.1.4",
     "firebase-tools": "^3.13.1",

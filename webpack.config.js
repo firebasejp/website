@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 var isProd = process.env.NODE_ENV === 'production'
 
@@ -10,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './public'),
     publicPath: '/',
-    filename: 'build.js?[chunkhash]'
+    filename: '[name].js?[hash]'
   },
   module: {
     rules: [
@@ -18,14 +19,19 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {
-            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-            // the "scss" and "sass" values for the lang attribute to the right configs here.
-            // other preprocessors should work out of the box, no loader config like this necessary.
+          loaders: isProd ? {
+            scss: ExtractTextPlugin.extract({
+              use: 'css-loader!sass-loader',
+              fallback: 'vue-style-loader'
+            }),
+            sass: ExtractTextPlugin.extract({
+              use: 'css-loader!sass-loader?indentedSyntax',
+              fallback: 'vue-style-loader'
+            })
+          } : {
             'scss': 'vue-style-loader!css-loader!sass-loader',
             'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
           }
-          // other vue-loader options go here
         }
       },
       {
@@ -78,12 +84,6 @@ module.exports = {
         yandex: false,
         windows: false
       }
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      minify: isProd ? {
-        collapseWhitespace: true
-      } : false
     })
   ]
 }
@@ -92,6 +92,10 @@ if (isProd) {
   module.exports.devtool = 'none'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
+    new ExtractTextPlugin({
+      filename: '[name].css?[hash]',
+      allChunks: true
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
@@ -108,3 +112,13 @@ if (isProd) {
     })
   ])
 }
+
+module.exports.plugins = (module.exports.plugins || []).concat([
+  new HtmlWebpackPlugin({
+    inject: true,
+    template: 'src/index.html',
+    minify: isProd ? {
+      collapseWhitespace: true
+    } : false
+  })
+])
