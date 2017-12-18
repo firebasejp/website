@@ -1,0 +1,35 @@
+[debug] [2017-12-18T10:27:57.433Z] ----------------------------------------------------------------------
+[debug] [2017-12-18T10:27:57.435Z] Command:       /usr/local/Cellar/node/8.9.2/bin/node /Users/JP21647/src/github.com/firebasejp/website/node_modules/.bin/firebase serve --only functions,hosting
+[debug] [2017-12-18T10:27:57.435Z] CLI Version:   3.13.1
+[debug] [2017-12-18T10:27:57.435Z] Platform:      darwin
+[debug] [2017-12-18T10:27:57.435Z] Node Version:  v8.9.2
+[debug] [2017-12-18T10:27:57.435Z] Time:          Mon Dec 18 2017 19:27:57 GMT+0900 (JST)
+[debug] [2017-12-18T10:27:57.435Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-18T10:27:57.449Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-18T10:27:57.449Z] > authorizing via signed-in user
+[debug] [2017-12-18T10:27:57.450Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/firejpug  
+ Mon Dec 18 2017 19:27:57 GMT+0900 (JST)
+[debug] [2017-12-18T10:27:58.161Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-18T10:27:58.162Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/firejpug/tokens  
+ Mon Dec 18 2017 19:27:58 GMT+0900 (JST)
+[debug] [2017-12-18T10:27:58.751Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/JP21647/src/github.com/firebasejp/website'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-12-18T10:27:59.404Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/firejpug  
+ Mon Dec 18 2017 19:27:59 GMT+0900 (JST)
+[debug] [2017-12-18T10:27:59.404Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/firejpug/apiKeys  
+ Mon Dec 18 2017 19:27:59 GMT+0900 (JST)
+[debug] [2017-12-18T10:27:59.404Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/firejpug  
+ Mon Dec 18 2017 19:27:59 GMT+0900 (JST)
+[debug] [2017-12-18T10:28:00.243Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-18T10:28:00.243Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/672500308592/clients/_:getWebAppConfig  
+ Mon Dec 18 2017 19:28:00 GMT+0900 (JST)
+[debug] [2017-12-18T10:28:00.292Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-18T10:28:00.455Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-18T10:28:02.254Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+

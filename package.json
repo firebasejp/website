@@ -5,11 +5,15 @@
   "author": "Kazuhiro Kubota <k2.wanko@gmail.com>",
   "private": true,
   "scripts": {
-    "postinstall": "cd functions && npm install",
-    "clean": "rimraf public",
+    "postinstall": "run-p postinstall:*",
+    "postinstall:functions": "cd functions && npm install",
+    "postinstall:blog": "cd blog && npm install",
+    "clean": "rimraf public/*",
     "dev": "run-s clean dev:*",
     "dev:webpack": "cross-env NODE_ENV=development webpack-dev-server --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "run-p build:*",
+    "build:web": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build:blog": "cd blog; npm run build",
     "deploy": "run-s clean build deploy:*",
     "deploy:firebase": "firebase deploy",
     "serve": "firebase serve --only functions,hosting"
