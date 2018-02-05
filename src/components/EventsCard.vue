@@ -57,6 +57,11 @@ export default {
     return {
       events: [
         {
+          title: 'Firebase Japan User Group / meetup / 2',
+          link: 'https://firebase-community.connpass.com/event/75093/',
+          description: 'Droid Kaigiのために日本に来られたEnriqueさんが登壇してくれます！'
+        },
+        {
           title: 'Firebase Japan User Group / meetup / 1',
           link: 'https://firebase-community.connpass.com/event/72939/',
           description: 'Firebase Japan User Group(FJUG)のmeetupです。 私たちはFirebaseに興味のあるどんな方でも歓迎しています。\n\n今回はFirebaseについて詳しい方に話してもらいます。\n\n質問などありましたらセッション後の質問やセッション中に https://firebase.asia/ から FJUGのSlackに入り #meetup で質問してみてください。'},

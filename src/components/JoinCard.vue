@@ -9,7 +9,7 @@
     </div>
     <md-list slot="content">
       <md-list-item
-        href="https://goo.gl/forms/HTpO1JucBx4pHbwe2"
+        href="https://join.slack.com/t/firebase-jp/shared_invite/enQtMzA5NzcxNjIxNDc0LTlmODJjNzc1ZjA1OTFhYWE4NDg3Yzc2N2I3M2FmMTE0OTUyNGJlYTI5MDAxNGJhNDUwZGY0MzJkMmYwOGFhZjU"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -21,7 +21,7 @@
         rel="noopener noreferrer"
         class="md-list-item-text"
       >
-        Connpass 
+        Connpass
       </md-list-item>
     </md-list>
 
