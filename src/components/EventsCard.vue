@@ -57,6 +57,11 @@ export default {
     return {
       events: [
         {
+          title: 'Firebase Japan User Group / meetup / 3',
+          link: 'https://firebase-community.connpass.com/event/80526/',
+          description: '今回はFirebase LT大会です。'
+        },
+        {
           title: 'Firebase Japan User Group / meetup / 2',
           link: 'https://firebase-community.connpass.com/event/75093/',
           description: 'Droid Kaigiのために日本に来られたEnriqueさんが登壇してくれます！'
