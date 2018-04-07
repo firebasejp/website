@@ -42,6 +42,7 @@
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
+    "vue-jsonp": "^0.1.7",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
