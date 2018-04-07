@@ -10,23 +10,31 @@
     <div slot="content">
       <md-card
           v-for="v in events"
-          :key="v.link"
+          :key="v.event_url"
           md-with-hover
       >
         <md-ripple>
-          <a
-              :href="v.link"
-              target="_blank"
-              rel="noopener noreferrer"
-              >
           <md-card-header>
-            <div class="md-title">{{v.title}}</div>
+            <a
+                :href="v.event_url"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+              <h2 class="md-title">{{v.title}}</h2>
+            </a>
+            <div class="md-subhead">
+              <md-icon>event</md-icon>
+              <span>{{v.started_at | moment}}</span>
+            </div>
+            <div class="md-subhead">
+              <md-icon>place</md-icon>
+              <span>{{v.place}}</span>
+            </div>
           </md-card-header>
-          </a>
 
           <md-card-actions>
             <md-button
-              :href="v.link"
+              :href="v.event_url"
               target="_blank"
               rel="noopener noreferrer"
               class="md-raised md-primary"
@@ -35,8 +43,8 @@
             </md-button>
           </md-card-actions>
 
-          <md-card-content>
-            {{v.description}}
+          <md-card-content v-if="v.catch">
+            {{v.catch}}
           </md-card-content>
         </md-ripple>
       </md-card>
@@ -46,6 +54,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import TemplateCard from './TemplateCard.vue'
 
 export default {
@@ -53,30 +62,22 @@ export default {
     TemplateCard
   },
   props: ['expand'],
+  filters: {
+    moment: function (date) {
+      return moment(date).format('YYYY/MM/DD HH:mm')
+    }
+  },
   data () {
     return {
-      events: [
-        {
-          title: 'Firebase Japan User Group / meetup / 3',
-          link: 'https://firebase-community.connpass.com/event/80526/',
-          description: '今回はFirebase LT大会です。'
-        },
-        {
-          title: 'Firebase Japan User Group / meetup / 2',
-          link: 'https://firebase-community.connpass.com/event/75093/',
-          description: 'Droid Kaigiのために日本に来られたEnriqueさんが登壇してくれます！'
-        },
-        {
-          title: 'Firebase Japan User Group / meetup / 1',
-          link: 'https://firebase-community.connpass.com/event/72939/',
-          description: 'Firebase Japan User Group(FJUG)のmeetupです。 私たちはFirebaseに興味のあるどんな方でも歓迎しています。\n\n今回はFirebaseについて詳しい方に話してもらいます。\n\n質問などありましたらセッション後の質問やセッション中に https://firebase.asia/ から FJUGのSlackに入り #meetup で質問してみてください。'},
-        {
-          title: 'Firebase Japan User Group / kickoff meeting',
-          link: 'https://firebase-community.connpass.com/event/71102/',
-          description: 'Firebaseのユーザーグループ作ります。 その最初のミーティングです。'
-        }
-      ]
+      events: []
     }
+  },
+  mounted() {
+    this.$jsonp('https://connpass.com/api/v1/event/', { series_id: 4070 }).then(res => {
+      this.events = res.events
+    }).catch(err => {
+      console.error(err)
+    })
   }
 
 }

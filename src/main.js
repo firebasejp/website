@@ -7,10 +7,13 @@ import routes from './routes.js'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 
+import VueJsonp from 'vue-jsonp'
+
 import VueAnalytics from 'vue-analytics'
 
 Vue.use(VueRouter)
 Vue.use(VueMaterial)
+Vue.use(VueJsonp)
 
 const router = new VueRouter({
   mode: 'history',
