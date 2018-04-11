@@ -37,6 +37,14 @@
           <md-icon>chat</md-icon>
           <span class="md-list-item-text">Twitter</span>
         </md-list-item>
+
+        <md-list-item
+            href="https://medium.com/firebase-japan-user-group"
+            target="_blank"
+        >
+          <md-icon>note</md-icon>
+          <span class="md-list-item-text">Blog</span>
+        </md-list-item>
       </md-list>
 
   </div>
