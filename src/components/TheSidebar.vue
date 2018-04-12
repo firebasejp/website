@@ -41,6 +41,7 @@
         <md-list-item
             href="https://medium.com/firebase-japan-user-group"
             target="_blank"
+            rel="noopener noreferrer"
         >
           <md-icon>note</md-icon>
           <span class="md-list-item-text">Blog</span>
