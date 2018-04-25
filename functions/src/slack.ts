@@ -1,27 +1,30 @@
-const admin = require('firebase-admin')
-const functions = require('firebase-functions')
-const express = require('express')
-const createSlackEventAdapter = require('@slack/events-api').createSlackEventAdapter
+import * as admin from 'firebase-admin'
+import * as functions from 'firebase-functions'
+import * as express from 'express'
+import { createSlackEventAdapter } from '@slack/events-api'
+import * as bodyParser from 'body-parser'
+
 const slackEvents = createSlackEventAdapter(functions.config().slack.verify_token)
 
 const app = express()
 const db = admin.firestore()
 
-app.use(require('body-parser').json())
+app.use(bodyParser.json())
 app.use((req, res, next) => {
-  const type = (req.body || {event: {}}).event.type
-  console.log('event:type', type)
+  const type = (req.body || { event: {} }).event.type
+  console.log('event:type', type, req.body)
   next()
 })
 app.use('/events', slackEvents.expressMiddleware())
 
 const messageKind = 'message'
 
-function messageKey (message, channel) {
+function messageKey(message: any, channel?: string) {
   return `${message.channel || channel}_${message.user}_${message.ts}`
 }
-function handleMessage (event) {
-  (async () => {
+
+function handleMessage(event: any) {
+  (async function () {
     let key, data
     if (event.subtype) {
       key = messageKey(event.message, event.channel)
