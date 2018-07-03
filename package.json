@@ -2,7 +2,7 @@
   "name": "website",
   "description": "Firebase Japan User Group's Website",
   "version": "1.0.0",
-  "author": "Kazuhiro Kubota <k2.wanko@gmail.com>",
+  "author": "Firebase Japan User Group Authors",
   "private": true,
   "scripts": {
     "postinstall": "cd functions && npm install",
