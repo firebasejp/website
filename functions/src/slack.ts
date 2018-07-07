@@ -1,47 +1,45 @@
+import * as Debug from 'debug'
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions'
 import * as express from 'express'
 import { createSlackEventAdapter } from '@slack/events-api'
 import * as bodyParser from 'body-parser'
+import { asyncHandler } from './utils'
+import { newEventRepository } from './repository'
+import { SlackEvent, Event } from './model'
+
+const debug = Debug('app:slack')
 
 const slackEvents = createSlackEventAdapter(functions.config().slack.verify_token)
 
-const app = express()
 const db = admin.firestore()
+const eventRepo = newEventRepository(db)
 
-app.use(bodyParser.json())
-app.use((req, res, next) => {
-  const type = (req.body || { event: {} }).event.type
-  console.log('event:type', type, req.body)
-  next()
-})
-app.use('/events', slackEvents.expressMiddleware())
-
-const messageKind = 'message'
-
-function messageKey(message: any, channel?: string) {
-  return `${message.channel || channel}_${message.user}_${message.ts}`
+function eventKey(event: SlackEvent) {
+  return `${event.channel}_${event.user}_${event.ts}`
 }
 
-function handleMessage(event: any) {
-  (async function () {
-    let key, data
-    if (event.subtype) {
-      key = messageKey(event.message, event.channel)
-      data = event.message
-      data.edited = true
-    } else {
-      key = messageKey(event)
-      data = event
-    }
-    await db.collection(messageKind).doc(key).set(data)
-    console.log('save message', key)
-  })().catch(err => {
-    console.error('error save message', err)
-  })
+function eventData(event: SlackEvent): Event {
+  const e: Event = {
+    id: eventKey(event),
+    channel: event.channel,
+    raw: JSON.stringify(event),
+    ts: Number.parseFloat(event.ts)
+  }
+  return e
 }
 
-slackEvents.on('message', handleMessage)
+async function handleMessage(event: SlackEvent) {
+  const data = eventData(event)
+  debug('event', event, data)
+  await eventRepo.save(data)
+}
+
+slackEvents.on('message', asyncHandler('handleMessage', handleMessage))
 slackEvents.on('error', console.error)
+
+const app = express()
+app.use(bodyParser.json())
+app.use('/events', slackEvents.expressMiddleware())
 
 module.exports = app
