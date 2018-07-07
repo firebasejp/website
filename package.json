@@ -24,12 +24,12 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
-    "eslint": "^4.19.1",
+    "eslint": "^5.0.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-node": "^5.2.1",
@@ -37,18 +37,18 @@
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "^4.4.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "favicons-webpack-plugin": "0.0.7",
+    "favicons-webpack-plugin": "0.0.9",
     "file-loader": "^1.1.11",
-    "firebase-tools": "^3.18.2",
+    "firebase-tools": "^3.19.3",
     "html-webpack-plugin": "^2.30.1",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.1",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.7",
     "vue-jsonp": "^0.1.7",
     "vue-loader": "^13.7.1",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.2"
+    "webpack": "^4.15.1",
+    "webpack-dev-server": "^3.1.4"
   }
 }
