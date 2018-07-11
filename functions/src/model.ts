@@ -17,7 +17,8 @@ export type SlackEvent =
 
 // MessageEvent is event model
 export type MessageEvent = {
-    user: string
+    user?: string
+    bot_id?: string
     client_msg_id: string
     ts: string
     channel: string
