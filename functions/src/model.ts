@@ -2,6 +2,7 @@
 // Event is db model
 export type Event = { 
     id: string
+    user: string
     channel: string
     raw: string
     ts: number

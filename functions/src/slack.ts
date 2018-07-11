@@ -22,6 +22,7 @@ function eventKey(event: SlackEvent) {
 function eventData(event: SlackEvent): Event {
   const e: Event = {
     id: eventKey(event),
+    user: event.user || event.bot_id,
     channel: event.channel,
     raw: JSON.stringify(event),
     ts: Number.parseFloat(event.ts)
