@@ -16,7 +16,7 @@ const db = admin.firestore()
 const eventRepo = newEventRepository(db)
 
 function eventKey(event: SlackEvent) {
-  return `${event.channel}_${event.user || event.bot_id}_${event.ts}`
+  return `${event.channel}_${event.ts}`
 }
 
 function eventData(event: SlackEvent): Event {
