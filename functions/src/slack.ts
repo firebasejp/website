@@ -5,35 +5,35 @@ import * as express from 'express'
 import { createSlackEventAdapter } from '@slack/events-api'
 import * as bodyParser from 'body-parser'
 import { asyncHandler } from './utils'
-import { newEventRepository } from './repository'
-import { SlackEvent, Event } from './model'
+import { newMessageRepository } from './repository'
+import { SlackEvent, Message } from './model'
 
 const debug = Debug('app:slack')
 
 const slackEvents = createSlackEventAdapter(functions.config().slack.verify_token)
 
 const db = admin.firestore()
-const eventRepo = newEventRepository(db)
+const msgRepo = newMessageRepository(db)
 
-function eventKey(event: SlackEvent) {
+function messageKey(event: SlackEvent) {
   return `${event.channel}_${event.ts}`
 }
 
-function eventData(event: SlackEvent): Event {
-  const e: Event = {
-    id: eventKey(event),
+function messageData(event: SlackEvent): Message {
+  const m: Message = {
+    id: messageKey(event),
     user: event.user || event.bot_id,
     channel: event.channel,
     raw: JSON.stringify(event),
     ts: Number.parseFloat(event.ts)
   }
-  return e
+  return m
 }
 
 async function handleMessage(event: SlackEvent) {
-  const data = eventData(event)
-  debug('event', event, data)
-  await eventRepo.save(data)
+  const data = messageData(event)
+  debug('message', event, data)
+  await msgRepo.save(data)
 }
 
 slackEvents.on('message', asyncHandler('handleMessage', handleMessage))

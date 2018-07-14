@@ -1,21 +1,21 @@
 import * as firebase from 'firebase-admin'
-import { Event } from './model'
+import { Message } from './model'
 
-export interface EventRepository {
-    save(event: Event): Promise<void>
+export interface MessageRepository {
+    save(Message): Promise<void>
 }
 
-const eventKind = 'Event'
+const messageKind = 'Message'
 
 
-export function newEventRepository(db: firebase.firestore.Firestore): EventRepository {
+export function newMessageRepository(db: firebase.firestore.Firestore): MessageRepository {
     return {
-        save: async function (event: Event) {
-            const data = Object.assign({}, event)
+        save: async function (msg: Message) {
+            const data = Object.assign({}, msg)
             delete data.id
             await db
-                .collection(eventKind)
-                .doc(event.id)
+                .collection(messageKind)
+                .doc(msg.id)
                 .set(data)
         }
     }

@@ -1,6 +1,6 @@
 
-// Event is db model
-export type Event = { 
+// Message is db model
+export type Message = { 
     id: string
     user: string
     channel: string
@@ -8,9 +8,9 @@ export type Event = {
     ts: number
 }
 
-export type TextEvent = {
+export type TextMessage = {
     text: string
-} & Event
+} & Message
 
 export type SlackEvent = 
     TextMessageEvent &
