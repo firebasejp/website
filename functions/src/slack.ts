@@ -7,12 +7,14 @@ import * as bodyParser from 'body-parser'
 import { asyncHandler } from './utils'
 import { newMessageRepository } from './repository'
 import { SlackEvent, Message } from './model'
+import { ChannelService, FirestoreChannelRepository, Channel } from './channel'
 
 const debug = Debug('app:slack')
 
 const slackEvents = createSlackEventAdapter(functions.config().slack.verify_token)
 
 const db = admin.firestore()
+const channelService = new ChannelService(new FirestoreChannelRepository(db))
 const msgRepo = newMessageRepository(db)
 
 function messageKey(event: SlackEvent) {
@@ -36,6 +38,16 @@ async function handleMessage(event: SlackEvent) {
   await msgRepo.save(data)
 }
 
+async function handleCreateChannel(event: SlackEvent) {
+  debug('handleCreateChannel', event)
+  if (event.type !== 'channel_created') {
+    return
+  }
+  const c = Channel.from(event)
+  await channelService.save(c)
+}
+
+slackEvents.on('channel_created', asyncHandler('handleCreateChannel', handleCreateChannel))
 slackEvents.on('message', asyncHandler('handleMessage', handleMessage))
 slackEvents.on('error', console.error)
 
