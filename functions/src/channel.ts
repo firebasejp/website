@@ -3,7 +3,7 @@ import { ChannelCreatedEvent } from './slack_model'
 import { model, key, toDocumentFrom } from './modelutil'
 
 // Channel is slack channel model.
-@model
+@model('channels')
 export class Channel {
     @key id: string
     name: string
@@ -55,8 +55,8 @@ export class FirestoreChannelRepository implements ChannelRepository {
     }
 
     async save(channel: Channel): Promise<void> {
-        const { key, doc } = toDocumentFrom(channel)
-        return await this.collection.doc(key).set(doc, { merge: true })
+        const { ref, doc } = toDocumentFrom(channel)
+        return await this.db.doc(ref).set(doc, { merge: true })
             .then(() => { return }) // TODO: add log
     }
 
