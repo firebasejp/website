@@ -1,4 +1,3 @@
-
 // Message is db model
 export type Message = {
     id: string
@@ -17,14 +16,18 @@ export enum SlackEventType {
     ChannelCreated = 'channel_created',
     ChannelRename = 'channel_rename',
     ChannelArchive = 'channel_archive',
-    ChannelUnarchive = 'channel_unarchive'
+    ChannelUnarchive = 'channel_unarchive',
+    ChannelDeleted = 'channel_deleted'
 }
 
 export type SlackEvent =
-    TextMessageEvent &
-    EditTextMessageEvent &
-    ChannelCreatedEvent & 
-    ChannelRenameEvent
+    TextMessageEvent |
+    EditTextMessageEvent |
+    ChannelCreatedEvent |
+    ChannelRenameEvent |
+    ChannelArchiveEvent |
+    ChannelUnarchiveEvent |
+    ChannelDeletedEvent
 
 // MessageEvent is event model
 export type MessageEvent = {
@@ -38,9 +41,10 @@ export type MessageEvent = {
     channel_type: string
 }
 
-export type TextMessageEvent = {
+export type TextMessageEvent = MessageEvent & {
+    type: SlackEventType.Message
     text: string
-} & MessageEvent
+}
 
 type Edited = {
     edited: {
@@ -50,6 +54,7 @@ type Edited = {
 }
 
 export type EditTextMessageEvent = {
+    type: SlackEventType.Message
     message: TextMessageEvent & Edited
 }
 
@@ -85,4 +90,9 @@ export type ChannelUnarchiveEvent = {
     type: SlackEventType.ChannelUnarchive
     channel: string // channel id
     user: string
+}
+
+export type ChannelDeletedEvent = {
+    type: SlackEventType.ChannelDeleted
+    channel: string // channel id
 }

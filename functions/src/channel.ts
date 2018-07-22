@@ -36,6 +36,7 @@ export class Channel {
 export interface ChannelRepository {
     save(channel: Channel): Promise<void>
     getFromId(id: string): Promise<Channel>
+    delete(id: string): Promise<void>
 }
 
 export class FirestoreChannelRepository implements ChannelRepository {
@@ -57,6 +58,10 @@ export class FirestoreChannelRepository implements ChannelRepository {
     async getFromId(id: string): Promise<Channel> {
         const res = await this.collection.doc(id).get()
         return Object.assign(new Channel(), { id }, res.data())
+    }
+
+    async delete(id: string): Promise<void> {
+        await this.collection.doc(id).delete()
     }
 }
 
@@ -92,5 +97,9 @@ export class ChannelService {
         const c = await this.repo.getFromId(id)
         c.is_archived = false
         await this.repo.save(c)
+    }
+
+    async delete(id: string) {
+        await this.repo.delete(id)
     }
 }
