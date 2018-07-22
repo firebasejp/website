@@ -20,7 +20,6 @@ export class Channel {
         creator: string // user id
         last_set: Date
     }
-    members?: string[]
 
     static from(data: ChannelCreatedEvent): Channel {
         const c = new Channel()
@@ -37,6 +36,8 @@ export interface ChannelRepository {
     save(channel: Channel): Promise<void>
     getFromId(id: string): Promise<Channel>
     delete(id: string): Promise<void>
+    addMember(id: string, userId: string): Promise<void>
+    removeMember(id: string, userId: string): Promise<void>
 }
 
 export class FirestoreChannelRepository implements ChannelRepository {
@@ -46,7 +47,11 @@ export class FirestoreChannelRepository implements ChannelRepository {
     }
 
     private get collection() {
-        return this.db.collection('Channels')
+        return this.db.collection('channels')
+    }
+
+    private membersCollection(id: string) {
+        return this.collection.doc(id).collection('members')
     }
 
     async save(channel: Channel): Promise<void> {
@@ -61,7 +66,35 @@ export class FirestoreChannelRepository implements ChannelRepository {
     }
 
     async delete(id: string): Promise<void> {
-        await this.collection.doc(id).delete()
+        const snap = await this.membersCollection(id).get()
+        const tasks: Array<Promise<any>> = []
+        const batchSize = 500
+        if (snap.size > 0) {
+            let count = 0
+            let batch = this.db.batch()
+            snap.forEach(doc => {
+                count += 1
+                batch.delete(doc.ref)
+                if (count >= batchSize) {
+                    tasks.push(batch.commit())
+                    batch = this.db.batch()
+                    count = 0
+                }
+            })
+            tasks.push(batch.commit())
+        }
+        tasks.push(this.collection.doc(id).delete())
+        await Promise.all(tasks)
+    }
+
+    async addMember(id: string, userId: string): Promise<void> {
+        const ref = this.db.collection('users').doc(userId)
+        await this.membersCollection(id).doc(userId)
+            .set({ ref })
+    }
+
+    async removeMember(id: string, userId: string): Promise<void> {
+        await this.membersCollection(id).doc(userId).delete()
     }
 }
 
@@ -101,5 +134,13 @@ export class ChannelService {
 
     async delete(id: string) {
         await this.repo.delete(id)
+    }
+
+    async join(id: string, userId: string) {
+        await this.repo.addMember(id, userId)
+    }
+
+    async leave(id: string, userId: string) {
+        await this.repo.removeMember(id, userId)
     }
 }

@@ -17,17 +17,27 @@ export enum SlackEventType {
     ChannelRename = 'channel_rename',
     ChannelArchive = 'channel_archive',
     ChannelUnarchive = 'channel_unarchive',
-    ChannelDeleted = 'channel_deleted'
+    ChannelDeleted = 'channel_deleted',
+    ChannelLeft = 'channel_left'
+}
+
+export enum SlackMessageSubType {
+    ChannelJoin = 'channel_join',
+    ChannelPurpose = 'channel_purpose',
+    ChannelTopic = 'channel_topic',
+    MessageChanged = 'message_changed'
 }
 
 export type SlackEvent =
-    TextMessageEvent |
-    EditTextMessageEvent |
+    // TextMessageEvent |
+    // EditTextMessageEvent |
     ChannelCreatedEvent |
     ChannelRenameEvent |
     ChannelArchiveEvent |
     ChannelUnarchiveEvent |
-    ChannelDeletedEvent
+    ChannelDeletedEvent | 
+    ChannelJoinMessageEvent | 
+    ChannelLeftEvent
 
 // MessageEvent is event model
 export type MessageEvent = {
@@ -39,6 +49,10 @@ export type MessageEvent = {
     channel: string
     event_ts: string
     channel_type: string
+}
+
+export type ChannelJoinMessageEvent = MessageEvent & {
+    subtype: SlackMessageSubType.ChannelJoin
 }
 
 export type TextMessageEvent = MessageEvent & {
@@ -95,4 +109,10 @@ export type ChannelUnarchiveEvent = {
 export type ChannelDeletedEvent = {
     type: SlackEventType.ChannelDeleted
     channel: string // channel id
+}
+
+export type ChannelLeftEvent = {
+    type: SlackEventType.ChannelLeft
+    channel: string // channel id
+    actor_id: string // user id
 }
