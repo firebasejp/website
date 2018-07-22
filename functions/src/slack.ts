@@ -5,7 +5,7 @@ import * as express from 'express'
 import { createSlackEventAdapter } from '@slack/events-api'
 import * as bodyParser from 'body-parser'
 import { asyncHandler } from './utils'
-import { SlackEvent, SlackEventType, Message, SlackMessageSubType } from './model'
+import { SlackEvent, SlackEventType, Message, SlackMessageSubType } from './slack_model'
 import { ChannelService, FirestoreChannelRepository, Channel } from './channel'
 
 const debug = Debug('app:slack')

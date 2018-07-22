@@ -1,5 +1,5 @@
 import { firestore } from 'firebase-admin'
-import { ChannelCreatedEvent } from './model'
+import { ChannelCreatedEvent } from './slack_model'
 import { model, key, toDocumentFrom } from './modelutil'
 
 // Channel is slack channel model.
