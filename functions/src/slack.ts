@@ -47,7 +47,17 @@ async function handleCreateChannel(event: SlackEvent) {
   await channelService.save(c)
 }
 
+async function handleRenameChannel(event: SlackEvent) {
+  debug('handleRenameChannel', event)
+  if (event.type !== 'channel_rename') {
+    return
+  }
+  const c = event.channel
+  await channelService.rename(c.id, c.name)
+}
+
 slackEvents.on('channel_created', asyncHandler('handleCreateChannel', handleCreateChannel))
+slackEvents.on('channel_rename', asyncHandler('handleRenameChannel', handleRenameChannel))
 slackEvents.on('message', asyncHandler('handleMessage', handleMessage))
 slackEvents.on('error', console.error)
 

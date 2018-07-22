@@ -17,11 +17,11 @@ function isModel(object: any): object is Model {
 export function model<T extends { new(...args: any[]): {} }>(constructor: T) {
     return class extends constructor implements Model {
         toDocument(): { key: string, doc: object } {
-            const doc = {}
+            const doc: { [key: string]: any } = {}
             const self = this
             let key = ''
             let hasKey = false
-            for (const prop of Object.getOwnPropertyNames(self)) {
+            for (const prop in self) {
                 const val = self[prop]
                 if (typeof val === 'function') {
                     continue

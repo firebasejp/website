@@ -15,7 +15,8 @@ export type TextMessage = {
 export type SlackEvent =
     TextMessageEvent &
     EditTextMessageEvent &
-    ChannelCreatedEvent
+    ChannelCreatedEvent & 
+    ChannelRenameEvent
 
 // MessageEvent is event model
 export type MessageEvent = {
@@ -44,16 +45,24 @@ export type EditTextMessageEvent = {
     message: TextMessageEvent & Edited
 }
 
+export type Channel = {
+    id: string
+    is_channel: boolean
+    name: string
+    name_normalized: string
+    created: number
+}
+
 export type ChannelCreatedEvent = {
     type: 'channel_created'
-    channel: {
-        id: string
-        is_channel: boolean
-        name: string
-        name_normalized: string
-        created: number
+    channel: Channel & {
         creator: string
         is_shared: boolean
         is_org_shared: boolean
     }
+}
+
+export type ChannelRenameEvent = {
+    type: 'channel_rename'
+    channel: Channel
 }
