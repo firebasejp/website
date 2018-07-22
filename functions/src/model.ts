@@ -16,7 +16,8 @@ export enum SlackEventType {
     Message = 'message',
     ChannelCreated = 'channel_created',
     ChannelRename = 'channel_rename',
-    ChannelArchive = 'channel_archive'
+    ChannelArchive = 'channel_archive',
+    ChannelUnarchive = 'channel_unarchive'
 }
 
 export type SlackEvent =
@@ -77,4 +78,11 @@ export type ChannelRenameEvent = {
 export type ChannelArchiveEvent = {
     type: SlackEventType.ChannelArchive
     channel: string // channel id
+    user: string
+}
+
+export type ChannelUnarchiveEvent = {
+    type: SlackEventType.ChannelUnarchive
+    channel: string // channel id
+    user: string
 }

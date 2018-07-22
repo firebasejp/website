@@ -64,9 +64,18 @@ async function handleChannelArchive(event: SlackEvent) {
   channelService.archive(event.channel)
 }
 
+async function handleChannelUnarchive(event: SlackEvent) {
+  debug('handleChannelUnarchive', event)
+  if (event.type !== SlackEventType.ChannelUnarchive) {
+    return
+  }
+  channelService.unarchive(event.channel)
+}
+
 slackEvents.on('channel_created', asyncHandler('handleCreateChannel', handleCreateChannel))
 slackEvents.on('channel_rename', asyncHandler('handleRenameChannel', handleRenameChannel))
 slackEvents.on('channel_archive', asyncHandler('handleChannelArchive', handleChannelArchive))
+slackEvents.on('channel_unarchive', asyncHandler('handleChannelUnarchive', handleChannelUnarchive))
 slackEvents.on('message', asyncHandler('handleMessage', handleMessage))
 slackEvents.on('error', console.error)
 
