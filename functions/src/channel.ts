@@ -81,4 +81,16 @@ export class ChannelService {
         c.name = name
         await this.repo.save(c)
     }
+
+    async archive(id: string) {
+        const c = await this.repo.getFromId(id)
+        c.is_archived = true
+        await this.repo.save(c)
+    }
+
+    async unarchive(id: string) {
+        const c = await this.repo.getFromId(id)
+        c.is_archived = false
+        await this.repo.save(c)
+    }
 }

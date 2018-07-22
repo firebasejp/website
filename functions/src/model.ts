@@ -12,6 +12,13 @@ export type TextMessage = {
     text: string
 } & Message
 
+export enum SlackEventType {
+    Message = 'message',
+    ChannelCreated = 'channel_created',
+    ChannelRename = 'channel_rename',
+    ChannelArchive = 'channel_archive'
+}
+
 export type SlackEvent =
     TextMessageEvent &
     EditTextMessageEvent &
@@ -20,7 +27,7 @@ export type SlackEvent =
 
 // MessageEvent is event model
 export type MessageEvent = {
-    type: 'message'
+    type: SlackEventType.Message
     user?: string
     bot_id?: string
     client_msg_id: string
@@ -54,7 +61,7 @@ export type Channel = {
 }
 
 export type ChannelCreatedEvent = {
-    type: 'channel_created'
+    type: SlackEventType.ChannelCreated
     channel: Channel & {
         creator: string
         is_shared: boolean
@@ -63,6 +70,11 @@ export type ChannelCreatedEvent = {
 }
 
 export type ChannelRenameEvent = {
-    type: 'channel_rename'
+    type: SlackEventType.ChannelRename
     channel: Channel
+}
+
+export type ChannelArchiveEvent = {
+    type: SlackEventType.ChannelArchive
+    channel: string // channel id
 }

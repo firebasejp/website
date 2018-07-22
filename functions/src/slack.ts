@@ -6,7 +6,7 @@ import { createSlackEventAdapter } from '@slack/events-api'
 import * as bodyParser from 'body-parser'
 import { asyncHandler } from './utils'
 import { newMessageRepository } from './repository'
-import { SlackEvent, Message } from './model'
+import { SlackEvent, SlackEventType, Message } from './model'
 import { ChannelService, FirestoreChannelRepository, Channel } from './channel'
 
 const debug = Debug('app:slack')
@@ -56,8 +56,17 @@ async function handleRenameChannel(event: SlackEvent) {
   await channelService.rename(c.id, c.name)
 }
 
+async function handleChannelArchive(event: SlackEvent) {
+  debug('handleChannelArchive', event)
+  if (event.type !== SlackEventType.ChannelArchive) {
+    return
+  }
+  channelService.archive(event.channel)
+}
+
 slackEvents.on('channel_created', asyncHandler('handleCreateChannel', handleCreateChannel))
 slackEvents.on('channel_rename', asyncHandler('handleRenameChannel', handleRenameChannel))
+slackEvents.on('channel_archive', asyncHandler('handleChannelArchive', handleChannelArchive))
 slackEvents.on('message', asyncHandler('handleMessage', handleMessage))
 slackEvents.on('error', console.error)
 
