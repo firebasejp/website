@@ -1,18 +1,37 @@
 // tslint:disable-next-line:no-import-side-effect
 import 'reflect-metadata'
 
+const fieldsMap = new Map<any, string[]>()
+function addFields(target: any, prop: string) {
+    let fields = fieldsMap.get(target.constructor)
+    if (fields) {
+        fields.push(prop)
+    } else {
+        fields = [prop]
+    }
+    fieldsMap.set(target.constructor, fields)
+}
+
 const keyMetadataKey = Symbol('key')
 export function key(target: any, propertyKey: string, descriptor?: PropertyDescriptor) {
     Reflect.defineMetadata(keyMetadataKey, true, target, propertyKey)
+    addFields(target, propertyKey)
+}
+
+export function field(target: any, propertyKey: string, descriptor?: PropertyDescriptor) {
+    addFields(target, propertyKey)
 }
 
 interface Model {
     getRef(): string
+    getFields(): string[]
     toDocument(): { ref: string, doc: object }
 }
 
 export function isModel(object: any): object is Model {
-    return 'toDocument' in object
+    return'getRef' in object &&
+    'getFields' in object &&
+    'toDocument' in object
 }
 
 export function model(ref: string) {
@@ -53,17 +72,20 @@ export function model(ref: string) {
                 return res
             }
 
+            getFields(): string[] {
+                return fieldsMap.get(constructor)
+            }
+
             toDocument(): { ref: string, doc: object } {
                 const doc: { [key: string]: any } = {}
-                const self = this
                 let ref = this.getRef()
                 let hasKey = false
-                for (const prop in self) {
-                    const val = self[prop]
+                for (const prop of this.getFields()) {
+                    const val = this[prop]
                     const isKey = Reflect.getMetadata(keyMetadataKey, this, prop) || false
                     if (isKey) {
                         if (hasKey) {
-                            throw new Error('Multiple key error')
+                            throw new Error(`Multiple key error: ${prop}`)
                         }
                         hasKey = true
                         if (typeof val !== 'string') {
@@ -97,4 +119,22 @@ export function toDocumentFrom(data: any): { ref: string, doc: object } {
         throw new Error('No document')
     }
     return data.toDocument()
+}
+
+export function newModel<T>(target: { new(): T }, ...sources: object[]): T & Model {
+    const res = new target()
+    if (!isModel(res)) {
+        throw new Error('No model')
+    }
+    for (const s of sources) {
+        const o = {}
+        for (const prop of res.getFields()) {
+            if (typeof s[prop] === 'undefined') {
+                continue
+            }
+            o[prop] = s[prop]
+        }
+        Object.assign(res, o)
+    }
+    return res
 }

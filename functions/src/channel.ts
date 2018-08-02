@@ -1,21 +1,21 @@
 import { firestore } from 'firebase-admin'
 import { ChannelCreatedEvent } from './slack_model'
-import { model, key, toDocumentFrom } from './modelutil'
+import { model, key, field, toDocumentFrom } from './modelutil'
 
 // Channel is slack channel model.
 @model('channels')
 export class Channel {
     @key id: string
-    name: string
-    created: Date
-    creator?: string // user id
-    is_archived?: boolean
-    topic?: {
+    @field name: string
+    @field created: Date
+    @field creator?: string // user id
+    @field is_archived?: boolean
+    @field topic?: {
         value: string
         creator: string // user id
         last_set: Date
     }
-    purepose?: {
+    @field purepose?: {
         value: string
         creator: string // user id
         last_set: Date
