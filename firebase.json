@@ -36,6 +36,18 @@
         ]
       }
     ],
+    "redirects": [
+      {
+        "source": "/staff-guideline",
+        "destination": "https://docs.google.com/document/d/1kkMbFJLEjAuVjJQD8JhGASYvB_4HEzFdlST71xIGgXo/edit?usp=sharing",
+        "type": 302
+      },
+      {
+        "source": "/privacy-policy",
+        "destination": "https://docs.google.com/document/d/1c2F5_YEUtBN9ORTIAqMeGY__x1KbEHO10Tle4PXnILM/edit?usp=sharing",
+        "type": 302
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
