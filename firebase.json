@@ -38,7 +38,7 @@
     ],
     "redirects": [
       {
-        "source": "/staff-guideline",
+        "source": "/community-guideline",
         "destination": "https://docs.google.com/document/d/1kkMbFJLEjAuVjJQD8JhGASYvB_4HEzFdlST71xIGgXo/edit?usp=sharing",
         "type": 302
       },
