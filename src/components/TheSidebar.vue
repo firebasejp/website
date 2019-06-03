@@ -33,11 +33,6 @@
           <span class="md-list-item-text">Join</span>
         </md-list-item>
 
-        <md-list-item to="twitter">
-          <md-icon>chat</md-icon>
-          <span class="md-list-item-text">Twitter</span>
-        </md-list-item>
-
         <md-list-item
             href="https://medium.com/firebase-japan-user-group"
             target="_blank"

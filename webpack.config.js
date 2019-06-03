@@ -2,7 +2,8 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var VueLoaderPlugin = require('vue-loader/lib/plugin')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 var isProd = process.env.NODE_ENV === 'production'
 
@@ -17,27 +18,17 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: isProd ? {
-            scss: ExtractTextPlugin.extract({
-              use: 'css-loader!sass-loader',
-              fallback: 'vue-style-loader'
-            }),
-            sass: ExtractTextPlugin.extract({
-              use: 'css-loader!sass-loader?indentedSyntax',
-              fallback: 'vue-style-loader'
-            })
-          } : {
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
-        }
+        loader: 'vue-loader'
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        test: /\.m?js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -47,9 +38,12 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        loader: 'css-loader',
-        include: /node_modules/
+        test: /\.(sc|c|sa)ss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       }
     ]
   },
@@ -68,6 +62,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
+    new VueLoaderPlugin(),
     new FaviconsWebpackPlugin({
       logo: path.join(__dirname, 'src/assets/icon.png'),
       prefix: './',
@@ -90,27 +85,32 @@ module.exports = {
 
 if (isProd) {
   module.exports.devtool = 'none'
+  module.exports.mode = 'production'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
+      allChunks: true,
       filename: '[name].css?[hash]',
-      allChunks: true
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
+      chunkFilename: '[id].css?[hash]'
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
   ])
+
+  module.exports.optimization = {
+    runtimeChunk: 'single',
+    namedModules: true,
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  }
 }
 
 module.exports.plugins = (module.exports.plugins || []).concat([

@@ -1,32 +1,21 @@
-import AboutPage from './components/AboutPage.vue'
-import EventsPage from './components/EventsPage.vue'
-import JoinPage from './components/JoinPage.vue'
-import TwitterPage from './components/TwitterPage.vue'
-import HomePage from './components/HomePage.vue'
-
 export default [
   {
     path: '/about',
     name: 'about',
-    component: AboutPage
+    component: () => import('./components/AboutPage.vue')
   },
   {
     path: '/events',
     name: 'events',
-    component: EventsPage
+    component: () => import('./components/EventsPage.vue')
   },
   {
     path: '/join',
     name: 'join',
-    component: JoinPage
-  },
-  {
-    path: '/twitter',
-    name: 'twitter',
-    component: TwitterPage
+    component: () => import('./components/JoinPage.vue')
   },
   {
     path: '*',
-    component: HomePage
+    component: () => import('./components/HomePage.vue')
   }
 ]
