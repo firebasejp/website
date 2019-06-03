@@ -46,6 +46,11 @@
         "source": "/privacy-policy",
         "destination": "https://docs.google.com/document/d/1c2F5_YEUtBN9ORTIAqMeGY__x1KbEHO10Tle4PXnILM/edit?usp=sharing",
         "type": 302
+      },
+      {
+        "source": "/youtube",
+        "destination": "https://www.youtube.com/channel/UCpvejDfNX4DOhuqlmCPiFfQ",
+        "type": 302
       }
     ],
     "rewrites": [
