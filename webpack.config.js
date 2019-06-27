@@ -17,6 +17,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /firebase-config\.json$/,
+        loader: path.resolve('./plugins/firebase-config-loader')
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader'
       },

@@ -1,3 +1,7 @@
+import 'first-input-delay'
+
+import './firebase'
+
 import Vue from 'vue'
 import App from './App.vue'
 
